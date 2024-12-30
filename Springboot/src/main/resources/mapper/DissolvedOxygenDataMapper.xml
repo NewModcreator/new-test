@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.springboot.mapper.DissolvedOxygenDataMapper">
+    <select id="getAllDissolvedOxygenData" resultType="com.chen.springboot.entity.DissolvedOxygenData">
+        SELECT * FROM dissolved_oxygen_data
+    </select>
+
+    <select id="getDissolvedOxygenDataById" parameterType="int" resultType="com.chen.springboot.entity.DissolvedOxygenData">
+        SELECT * FROM dissolved_oxygen_data WHERE id = #{dataId}
+    </select>
+
+    <insert id="createDissolvedOxygenData" parameterType="com.chen.springboot.entity.DissolvedOxygenData" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO dissolved_oxygen_data(do_value, segment_id)
+        VALUES(#{doValue}, #{segmentId})
+    </insert>
+
+    <update id="updateDissolvedOxygenData" parameterType="com.chen.springboot.entity.DissolvedOxygenData">
+        UPDATE dissolved_oxygen_data
+        SET do_value = #{doValue},
+            segment_id = #{segmentId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteDissolvedOxygenData" parameterType="int">
+        DELETE FROM dissolved_oxygen_data WHERE id = #{dataId}
+    </delete>
+</mapper>
+
+
+

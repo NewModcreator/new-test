@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.springboot.mapper.TurbidityDataMapper">
+    <select id="getAllTurbidityData" resultType="com.chen.springboot.entity.TurbidityData">
+        SELECT * FROM turbidity_data
+    </select>
+
+    <select id="getTurbidityDataById" parameterType="int" resultType="com.chen.springboot.entity.TurbidityData">
+        SELECT * FROM turbidity_data WHERE id = #{dataId}
+    </select>
+
+    <insert id="createTurbidityData" parameterType="com.chen.springboot.entity.TurbidityData" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO turbidity_data(turbidity, segment_id)
+        VALUES(#{turbidity}, #{segmentId})
+    </insert>
+
+    <update id="updateTurbidityData" parameterType="com.chen.springboot.entity.TurbidityData">
+        UPDATE turbidity_data
+        SET turbidity = #{turbidity},
+            segment_id = #{segmentId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTurbidityData" parameterType="int">
+        DELETE FROM turbidity_data WHERE id = #{dataId}
+    </delete>
+</mapper>
+
+
+

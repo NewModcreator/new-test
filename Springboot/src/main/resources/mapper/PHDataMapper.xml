@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.springboot.mapper.PHDataMapper">
+    <select id="getAllPHData" resultType="com.chen.springboot.entity.PHData">
+        SELECT * FROM ph_data
+    </select>
+
+    <select id="getPHDataById" parameterType="int" resultType="com.chen.springboot.entity.PHData">
+        SELECT * FROM ph_data WHERE id = #{dataId}
+    </select>
+
+    <insert id="createPHData" parameterType="com.chen.springboot.entity.PHData" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ph_data(ph_value, segment_id)
+        VALUES(#{phValue}, #{segmentId})
+    </insert>
+
+    <update id="updatePHData" parameterType="com.chen.springboot.entity.PHData">
+        UPDATE ph_data
+        SET ph_value = #{phValue},
+            segment_id = #{segmentId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deletePHData" parameterType="int">
+        DELETE FROM ph_data WHERE id = #{dataId}
+    </delete>
+</mapper>
+
+
+

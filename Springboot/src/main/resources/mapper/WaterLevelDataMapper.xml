@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.springboot.mapper.WaterLevelDataMapper">
+    <select id="getAllWaterLevelData" resultType="com.chen.springboot.entity.WaterLevelData">
+        SELECT * FROM water_level_data
+    </select>
+
+    <select id="getWaterLevelDataById" parameterType="int" resultType="com.chen.springboot.entity.WaterLevelData">
+        SELECT * FROM water_level_data WHERE id = #{dataId}
+    </select>
+
+    <insert id="createWaterLevelData" parameterType="com.chen.springboot.entity.WaterLevelData" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO water_level_data(water_level, segment_id)
+        VALUES(#{waterLevel}, #{segmentId})
+    </insert>
+
+    <update id="updateWaterLevelData" parameterType="com.chen.springboot.entity.WaterLevelData">
+        UPDATE water_level_data
+        SET water_level = #{waterLevel},
+            segment_id = #{segmentId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteWaterLevelData" parameterType="int">
+        DELETE FROM water_level_data WHERE id = #{dataId}
+    </delete>
+</mapper>
+
+
+

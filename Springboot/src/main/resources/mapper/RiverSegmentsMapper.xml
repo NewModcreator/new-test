@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chen.springboot.mapper.RiverSegmentsMapper">
+    <select id="getAllRiverSegments" resultType="com.chen.springboot.entity.RiverSegment">
+        SELECT * FROM river_segments
+    </select>
+
+    <select id="getRiverSegmentById" parameterType="int" resultType="com.chen.springboot.entity.RiverSegment">
+        SELECT * FROM river_segments WHERE id = #{segmentId}
+    </select>
+
+    <insert id="createRiverSegment" parameterType="com.chen.springboot.entity.RiverSegment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO river_segments(name, length, river_manager, contact_info)
+        VALUES(#{name}, #{length}, #{riverManager}, #{contactInfo})
+    </insert>
+
+    <update id="updateRiverSegment" parameterType="com.chen.springboot.entity.RiverSegment">
+        UPDATE river_segments
+        SET name = #{name},
+            length = #{length},
+            river_manager = #{riverManager},
+            contact_info = #{contactInfo}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteRiverSegment" parameterType="int">
+        DELETE FROM river_segments WHERE id = #{segmentId}
+    </delete>
+</mapper>
+
+
+
